@@ -112,16 +112,16 @@ install :: @INSTALL_TARGETS@
 
 install_cli :: all_cli
 	$(BININSTALL) $(HFSUTIL) "$(BINDEST)/."
-
+	$(BININSTALL) -d $(DESTDIR)$(BINDEST) $(DESTDIR)$(MANDEST)/man$(MANEXT)
 	for file in $(CLITARGETS); do  \
-		$(HARDLINK) "$(BINDEST)/$(HFSUTIL)" "$(BINDEST)/$$file";  \
+		$(HARDLINK) "$(BINDEST)/$(HFSUTIL)" "$(DESTDIR)$(BINDEST)/$$file";  \
 	done
 
 	rm -f "$(BINDEST)/$(HFSUTIL)"
 
 	for file in $(GENERALDOCS) $(CLIDOCS); do  \
 		$(LIBINSTALL) doc/man/$$file  \
-		"$(MANDEST)/man$(MANEXT)/`basename $$file .1`.$(MANEXT)";  \
+		"$(DESTDIR)$(MANDEST)/man$(MANEXT)/`basename $$file .1`.$(MANEXT)";  \
 	done
 
 install_tcl :: all_tcl
