@@ -34,6 +34,7 @@ INCDEST =	@includedir@
 LIBDEST =	@libdir@
 
 INSTALL =	@INSTALL@
+BININSTALL =    @INSTALL_PROGRAM@
 LIBINSTALL =	@INSTALL_DATA@
 SOFTLINK =	@LN_S@
 
@@ -72,8 +73,9 @@ check :: all
 	@echo "No self-tests available."
 
 install ::
-	$(LIBINSTALL) libhfs.a "$(LIBDEST)/."
-	$(LIBINSTALL) hfs.h "$(INCDEST)/."
+	$(BININSTALL) -d $(DESTDIR)$(LIBDEST) $(DESTDIR)$(INCDEST)
+	$(LIBINSTALL) libhfs.a "$(DESTDIR)$(LIBDEST)/."
+	$(LIBINSTALL) hfs.h "$(DESTDIR)$(INCDEST)/."
 
 again :: clean all
 
