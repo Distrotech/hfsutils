@@ -39,7 +39,7 @@ MANEXT =	1
 INSTALL =	@INSTALL@
 BININSTALL =	@INSTALL_PROGRAM@ -m 755
 LIBINSTALL =	@INSTALL_DATA@
-HARDLINK =	ln -f
+HARDLINK =	ln -s
 
 CC =		@CC@
 INCLUDES =	@CPPFLAGS@ -Ilibhfs @TCL_INCLUDES@ @TK_INCLUDES@
@@ -111,10 +111,10 @@ check :: all
 install :: @INSTALL_TARGETS@
 
 install_cli :: all_cli
-	$(BININSTALL) $(HFSUTIL) "$(BINDEST)/."
+	$(BININSTALL) -D $(HFSUTIL) "$(DESTDIR)$(BINDEST)/$(HFSUTIL)"
 	$(BININSTALL) -d $(DESTDIR)$(BINDEST) $(DESTDIR)$(MANDEST)/man$(MANEXT)
 	for file in $(CLITARGETS); do  \
-		$(HARDLINK) "$(BINDEST)/$(HFSUTIL)" "$(DESTDIR)$(BINDEST)/$$file";  \
+		$(HARDLINK) "$(HFSUTIL)" "$(DESTDIR)$(BINDEST)/$$file";  \
 	done
 
 	rm -f "$(BINDEST)/$(HFSUTIL)"
