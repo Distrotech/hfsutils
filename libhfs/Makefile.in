@@ -61,7 +61,7 @@ LDFLAGS =	$(LDOPTS)
 
 TARGETS =	$(HFSTARGET)
 
-HFSTARGET =	libhfs.a
+HFSTARGET =	libhfs_utils.a
 HFSOBJS =	os.o data.o block.o low.o medium.o file.o btree.o node.o  \
 			record.o volume.o hfs.o version.o $(LIBOBJS)
 
@@ -74,7 +74,7 @@ check :: all
 
 install ::
 	$(BININSTALL) -d $(DESTDIR)$(LIBDEST) $(DESTDIR)$(INCDEST)
-	$(LIBINSTALL) libhfs.a "$(DESTDIR)$(LIBDEST)/."
+	$(LIBINSTALL) libhfs_utils.a "$(DESTDIR)$(LIBDEST)/."
 	$(LIBINSTALL) hfs.h "$(DESTDIR)$(INCDEST)/."
 
 again :: clean all

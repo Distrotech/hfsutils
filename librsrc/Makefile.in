@@ -119,7 +119,7 @@ main.o:
 	$(CC) $(CFLAGS) -I. -I../libhfs -c main.c -o $@
 
 main: librsrc.a main.o
-	$(CC) $(LDFLAGS) -L. -L../libhfs main.o -lhfs -lrsrc -o $@
+	$(CC) $(LDFLAGS) -L. -L../libhfs main.o -lhfs_utils -lrsrc -o $@
 
 ### DEPENDENCIES FOLLOW #######################################################
 

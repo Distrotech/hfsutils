@@ -67,7 +67,7 @@ CLITARGETS =	hattrib hcd hcopy hdel hdir hformat hls hmkdir hmount hpwd  \
 TCLTARGETS =	hfssh hfs
 TKTARGETS =	xhfs
 
-LIBHFS =	libhfs/libhfs.a
+LIBHFS =	libhfs/libhfs_utils.a
 INCHFS =	libhfs/hfs.h
 
 LIBRSRC =	librsrc/librsrc.a
@@ -229,14 +229,14 @@ $(LINUX) :: $(LIBHFS)
 $(HFSUTIL): $(LIBHFS) hfsutil.o hcwd.o $(CLIOBJS) $(UTILOBJS) $(LIBOBJS)
 	$(CC) $(LDFLAGS) hfsutil.o hcwd.o   \
 		$(CLIOBJS) $(UTILOBJS)  \
-		-lhfs $(LIBS) $(LIBOBJS) -o $@
+		-lhfs_utils $(LIBS) $(LIBOBJS) -o $@
 
 $(CLITARGETS): $(HFSUTIL)
 	-$(HARDLINK) $(HFSUTIL) $@
 
 hfssh: $(LIBHFS) hfssh.o tclhfs.o $(UTILOBJS) $(LIBOBJS)
 	$(CC) $(LDFLAGS) hfssh.o tclhfs.o $(UTILOBJS)  \
-		-lhfs $(LIBS) $(TCLLIBS) $(LIBOBJS) -o $@
+		-lhfs_utils $(LIBS) $(TCLLIBS) $(LIBOBJS) -o $@
 
 hfs: hfs.tcl hfssh
 	( echo "#!./hfssh";  \
@@ -260,7 +260,7 @@ xhfs.c: xhfs.tcl
 
 xhfs: $(LIBHFS) hfswish.o xhfs.o tclhfs.o $(UTILOBJS) $(LIBOBJS)
 	$(CC) $(LDFLAGS) hfswish.o xhfs.o tclhfs.o $(UTILOBJS)  \
-		-lhfs $(LIBS) $(TKLIBS) $(LIBOBJS) -o $@
+		-lhfs_utils $(LIBS) $(TKLIBS) $(LIBOBJS) -o $@
 
 ### DEPENDENCIES FOLLOW #######################################################
 

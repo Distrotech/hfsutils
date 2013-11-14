@@ -40,7 +40,7 @@ CC =		@CC@
 INCLUDES =	@CPPFLAGS@ -I.. -I../libhfs
 DEFINES =	@DEFS@
 LIBOBJS =	@LIBOBJS@ ../suid.o ../version.o
-LIBS =		@LIBS@ -L../libhfs -lhfs
+LIBS =		@LIBS@ -L../libhfs -lhfs_utils
 
 COPTS =		@CFLAGS@
 LDOPTS =	@LDFLAGS@
